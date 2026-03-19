@@ -19,7 +19,7 @@ Beyond developer tooling, applications, deployment pipelines, internal portals, 
 
 ## Challenge
 
-Engineers are expected to follow corporate security baselines. The baselines live across dozens of Confluence pages. Engineers don't always know what applies, where to find it, or which version is current. Resulting in non-compliance.
+Engineers are expected to follow corporate security baselines. The baselines live across dozens of Confluence pages. Engineers don't always know what applies, where to find it. Resulting in non-compliance.
 
 Engineers are already using AI tools to enhance code efforts. Those tools don't currently know WBD policy. They generate output that looks right but may violate baselines.  
 Probably cought by review but slowed down time to delivery.
@@ -79,7 +79,7 @@ MCP is an open standard adopted across the AI industry. WBD builds the MCP serve
 </tr>
 </table>
 
-**Local device configuration:** MCP connections are defined in a simple JSON config file on the engineer's machine (e.g., `.cursor/mcp.json`, Copilot's org-level settings). The org can push these configs centrally — via GitHub admin console, managed dotfiles, or onboarding tooling — so engineers' tools point to WBD's MCP servers from day one. No manual setup, no tribal knowledge required.
+**Local device configuration:** MCP connections are defined in a simple JSON config file on the engineer's machine (e.g., `.cursor/mcp.json`, Copilot's org-level settings). The org can push these configs centrally — via GitHub admin console, managed dotfiles, or onboarding tooling — so engineers' tools point to WBD's MCP servers from day one. No manual setup, zero tribal knowledge required.
 
 ---
 
@@ -112,7 +112,7 @@ MCP is an open standard adopted across the AI industry. WBD builds the MCP serve
 
 ---
 
-## Deliverables
+## Cloud Security Deliverables
 
 | # | Deliverable | What It Is |
 |---|------------|-----------|
@@ -168,15 +168,12 @@ module "grc_baselines_mcp" {
 |------|-------------------|---------------|
 | AWS Infrastructure | Approved TF modules, landing zone patterns, networking standards | *"Standard VPC module for a new workload account"* |
 | Identity & Access | IAM role patterns, least-privilege templates, federation standards | *"Validate this IAM policy against WBD baseline"* |
-| Network Engineering | Transit Gateway topologies, CIDR allocation, peering policies, bandwidth standards | *"Approved path from this VPC to on-prem?"* |
-| Network Security | Firewall rules, WAF configs, DNS standards | *"Approved egress pattern for a containerized workload"* |
+| Network Engineering | Transit Gateway topologies, CIDR allocation, peering policies, bandwidth standards | *"Approved CIDR in us-east2"* |
 | SecOps / SOC | Incident response playbooks, escalation matrices, detection rule logic | *"Playbook for compromised IAM credentials"* |
-| Vulnerability Management | SLA timelines by severity, exception processes, compensating controls | *"Remediation SLA for a critical finding in production?"* |
 | Application Security | Secure coding standards (OWASP), approved crypto libraries, API security | *"How should I handle auth tokens in a React app per WBD standard?"* |
 | GRC | Audit procedures, control mappings, evidence requirements | *"SOX controls that apply to this data classification"* |
 | Data Privacy / Legal | Data classification definitions, retention policies, GDPR/CCPA handling | *"Retention requirements for PII in this data classification?"* |
 | Platform Engineering | CI/CD templates, container standards, approved base images | *"Standard GitHub Actions pipeline for ECS"* |
-| DevOps / SRE | On-call procedures, SLO definitions, incident severity, post-mortem templates | *"SLO target for a Tier 1 service?"* |
 | Cloud FinOps | Tagging standards, budget thresholds, approved instance families, cost allocation | *"What tags are required before I deploy to production?"* |
 | M&A Integration | Due diligence checklists, system integration playbooks, security assessments | *"Security assessment checklist for onboarding an acquired company's AWS accounts?"* |
 
