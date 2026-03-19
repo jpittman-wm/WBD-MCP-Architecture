@@ -123,7 +123,7 @@ MCP is an open standard adopted across the AI industry. WBD builds the MCP serve
 
 ---
 
-## Security & Legal
+## Security / Legal
 
 - **Data stays internal.** MCP servers and vector databases run on WBD infrastructure. No corporate documentation leaves the network.
 - **Local embeddings.** Document processing uses a local model — no content sent to external APIs.
@@ -134,7 +134,7 @@ MCP is an open standard adopted across the AI industry. WBD builds the MCP serve
 
 ---
 
-## Infrastructure & Cost
+## Infrastructure / Cost
 
 ### Deployment Path
 
@@ -162,7 +162,7 @@ module "grc_baselines_mcp" {
 
 **Cloud Security builds the platform and leads by example.** Once the pattern is proven, teams can stand up their own MCP server for their domain knowledge using the same infrastructure and starter kit.
 
-**Example of where this goes next:**
+**Examples:**
 
 | Team | What They'd Serve | Example Query |
 |------|-------------------|---------------|
@@ -181,7 +181,7 @@ Each team points the scraper at their own Confluence spaces, defines their colle
 
 ---
 
-### Immediate Win — GitHub Copilot
+### Immediate Win / GitHub Copilot
 
 <table>
 <tr>
@@ -190,7 +190,7 @@ Each team points the scraper at their own Confluence spaces, defines their colle
 </tr>
 </table>
 
-### Also Ready — Cursor & Bedrock
+### Also Ready / Cursor & Bedrock
 
 <table>
 <tr>
@@ -203,9 +203,6 @@ Each team points the scraper at their own Confluence spaces, defines their colle
 </tr>
 </table>
 
-For all three tools, the engineer works as they normally do and the AI retrieves corporate baselines behind the scenes. No workflow change. No new tool to learn.
-
-Additional tools (Claude Code Enterprise, Windsurf, etc.) connect to the same MCP servers as they pass WBD's approval process.
 
 
 ---
