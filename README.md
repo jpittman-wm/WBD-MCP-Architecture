@@ -12,13 +12,16 @@
 
 Serve Warner Bros. Discovery's security baselines, architecture standards, and compliance requirements as live, queryable services that any approved AI tool can consume — so engineering can easily adhere to corporate policy automatically.
 
+Beyond developer tooling, applications, deployment pipelines, internal portals, compliance dashboards — can also query the same knowledge servers programmatically.
+
+
 ---
 
 ## Challenge
 
 Engineers are expected to follow corporate security baselines. The baselines live across dozens of Confluence pages. Engineers don't always know what applies, where to find it, or which version is current. Resulting in non-compliance.
 
-Eengineers are already using AI tools to enhance code efforts. Those tools don't currently know WBD policy. They generate output that looks right but may violate baselines.  
+Engineers are already using AI tools to enhance code efforts. Those tools don't currently know WBD policy. They generate output that looks right but may violate baselines.  
 Probably cought by review but slowed down time to delivery.
 
 ---
@@ -29,9 +32,13 @@ Probably cought by review but slowed down time to delivery.
   <img src="logos/anthropic.png" alt="Anthropic" width="60"/>
 </p>
 
-**MCP (Model Context Protocol)** is an open standard — created by Anthropic and adopted across the AI industry — for connecting AI tools to corporate knowledge. We build containerized MCP servers that index our Confluence documentation and serve it to any approved AI tool in real-time.
+**MCP (Model Context Protocol)** is an open standard — created by Anthropic and adopted across the AI industry. This proposal is for utilizing MCP to connect AI tools to corporate knowledge. We build containerized MCP servers that index our Confluence documentation and serve it to any approved AI tool in real-time.
 
-When an engineer asks any AI tool to generate infrastructure, the tool automatically retrieves the applicable WBD baselines before generating output. Compliance becomes the default.
+When an engineer asks an approved AI tool — Cursor, Copilot, Bedrock — to generate infrastructure, the tool automatically retrieves the applicable WBD baselines before generating output. Compliance becomes the default.
+
+Security teams can leverage the same infrastructure to streamline architecture reviews — pulling applicable baselines, compliance mappings, and prior findings automatically instead of investigating from scratch every time.
+
+Another enhancment could be using RAG (Retrieval-Augmented Generation), to index historical data — past review decisions, exception requests, incidents — improving recommendations over time.
 
 ---
 
@@ -53,10 +60,6 @@ Content auto-syncs from Confluence daily. When baselines update, every engineer'
 
 MCP is an open standard adopted across the AI industry. WBD builds the MCP servers — any approved tool connects. 
 
-### WBD Approved AI Tools — MCP Compatibility
-
-These tools are **already approved at Warner Bros. Discovery**. The MCP column shows which ones can connect to the proposed MCP knowledge servers today.
-
 ---
 
 ### Code Assistance — Approved & MCP Ready Now
@@ -76,8 +79,6 @@ These tools are **already approved at Warner Bros. Discovery**. The MCP column s
 </tr>
 </table>
 
-> **These three tools are approved and MCP-capable. The MCP knowledge infrastructure can be connected immediately — no new tool procurement required.**
-
 **Local device configuration:** MCP connections are defined in a simple JSON config file on the engineer's machine (e.g., `.cursor/mcp.json`, Copilot's org-level settings). The org can push these configs centrally — via GitHub admin console, managed dotfiles, or onboarding tooling — so engineers' tools point to WBD's MCP servers from day one. No manual setup, no tribal knowledge required.
 
 ---
@@ -86,8 +87,7 @@ These tools are **already approved at Warner Bros. Discovery**. The MCP column s
 
 ---
 
-### Not Yet Approved — MCP-Native (Seeking Approval) Powerfull - Need to fast-track
-
+### Not Yet Approved — MCP-Native (Seeking Approval) Powerfull 
 <table>
 <tr>
 <td width="80" align="center"><img src="logos/claude.png" alt="Claude" width="50"/><br/><sub><b>Claude Code Enterprise</b></sub></td>
@@ -133,7 +133,7 @@ These power custom agents and automation that consume MCP servers programmatical
 
 Every team that writes or reviews infrastructure, code, or configuration:
 
-Cloud Security, GRC, AppSec, Product Security, Vulnerability Management, IAM, Network Security, SecOps, Platform Engineering — and every engineering team consuming their guidance.
+Cloud Security, Vulnerability Management, IAM, Network Security, SecOps, Platform Engineering — etc.
 
 ---
 
@@ -168,7 +168,7 @@ Cloud Security, GRC, AppSec, Product Security, Vulnerability Management, IAM, Ne
 |-------|---------|-------------|---------|
 | **POC** | Docker Compose on a single VM | **$0 – $1,800** | One `docker-compose up`. Prove the value, tune the RAG pipeline. |
 | **Production** | AWS Serverless (ECS Fargate + Aurora pgvector) | **$1,200 – $3,200** | No servers to manage. Scales to near-zero when idle. Fully defined in Terraform. |
-| **Azure alternative** | Container Apps + PostgreSQL Flexible Server | Comparable | Same architecture, Azure-native services. Terraform modules swap out. |
+Azure, GCP, and OCI solutions exist at similar cost, but our existing Direct Connect footprint globally makes AWS the natural fit — keeping these MCP servers behind the corporate firewall with engineers accessing them over GlobalProtect.
 
 Production stack: **Lambda** scrapes Confluence nightly - **Bedrock Titan** generates embeddings - **Aurora pgvector** stores vectors - **ECS Fargate** runs MCP servers - **API Gateway + WAF** authenticates and routes requests. All private networking, KMS encryption, CloudWatch monitoring, and IAM least-privilege included.
 
@@ -177,8 +177,8 @@ Production stack: **Lambda** scrapes Confluence nightly - **Bedrock Titan** gene
 ```hcl
 module "grc_baselines_mcp" {
   source = "./modules/mcp-server"
-  name   = "grc-baselines"
-  image  = "${module.registry.repository_url}:grc-baselines-latest"
+  name   = "gict-terraform-standards"
+  image  = "${module.registry.repository_url}:gict-terraform-standards-latest"
   port   = 8104
 }
 # terraform apply - deployed, registered, monitored, secured
@@ -186,7 +186,7 @@ module "grc_baselines_mcp" {
 
 ### How Any Team Deploys Their Own MCP
 
-**Cloud Security builds the platform and leads by example.** Once the pattern is proven, any team can stand up their own MCP server for their domain knowledge using the same infrastructure and starter kit — no new architecture, no new approval, just a config file and a PR.
+**Cloud Security builds the platform and leads by example.** Once the pattern is proven, teams can stand up their own MCP server for their domain knowledge using the same infrastructure and starter kit.
 
 **Example of where this goes next:**
 
@@ -231,30 +231,6 @@ Each team points the scraper at their own Confluence spaces, defines their colle
 
 Additional tools (Claude Code Enterprise, Windsurf, etc.) can be connected to the same MCP servers as they pass WBD's approval process. One infrastructure investment serves every current and future tool.
 
----
-
-### Engineering Time
-
-| Phase | Effort | What's Happening |
-|-------|--------|-----------------|
-| Phase 1 (POC) | 4 weeks, one engineer | Docker Compose POC, Confluence scraper, first MCP server, validate with pilot users |
-| Phase 2 (Production) | 3-4 weeks, one engineer | Terraform modules, AWS serverless migration, CI/CD pipeline, monitoring |
-| Phase 3 (Scale) | 1-2 weeks per team | Starter kit config, Terraform module per team, onboarding |
-| Ongoing maintenance | -5% of one engineer | Scraper health, skill tuning, Terraform drift checks |
-
-### CI/CD & Monitoring
-
-- **CI/CD:** GitHub Actions — lint, build, `terraform plan` on PR, auto-deploy to dev on merge, manual gates for staging/prod. Zero-downtime container rollouts via Fargate.
-- **Monitoring:** CloudWatch dashboards covering scraper health, MCP server latency/errors, database utilization, gateway traffic, query audit trail, cost tracking. Alerts on failures, staleness, or budget overruns.
-
----
-
-## Ask
-
-1. Approve MCP Knowledge Platform as Cloud Security reference implementation
-2. Submit AI Intake
-3. Begin Phase 1 build — connect to Copilot, Cursor, and Bedrock (all three already approved, no procurement needed)
-4. Evaluate additional tools (Claude Code Enterprise, Windsurf, etc.) as needed
 
 ---
 
