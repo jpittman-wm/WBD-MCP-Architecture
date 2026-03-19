@@ -4,7 +4,7 @@
 
 <h1 align="center">MCP Knowledge Infrastructure</h1>
 <h3 align="center">Corporate Policy as an AI-Ready Service</h3>
-<p align="center"><strong>Jason Pittman, Cloud Security & Architecture | March 2026</strong></p>
+<p align="center"><strong>Jason Pittman, Cloud Security Architecture | March 2026</strong></p>
 
 ---
 
