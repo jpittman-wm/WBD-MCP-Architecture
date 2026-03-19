@@ -8,7 +8,7 @@
 
 ---
 
-## Executive Summary
+## Vision
 
 Serve Warner Bros. Discovery's security baselines, architecture standards, and compliance requirements as live, queryable services that any approved AI tool can consume — so engineering can easily adhere to corporate policy automatically.
 
