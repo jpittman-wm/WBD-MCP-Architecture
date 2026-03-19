@@ -93,26 +93,9 @@ MCP is an open standard adopted across the AI industry. WBD builds the MCP serve
 <td width="80" align="center"><img src="logos/claude.png" alt="Claude" width="50"/><br/><sub><b>Claude Code Enterprise</b></sub></td>
 <td><b>Anthropic</b> · MCP: <b>Native (first-class)</b><br/>Built by MCP creators. Deepest MCP integration. SSO, audit logging, data governance, custom system prompts, org-wide MCP configs. Anthropic's Claude models already power Amazon Bedrock — a platform WBD leverages heavily today. Claude Code Enterprise extends that existing investment from API to developer tooling. This tool's evolution as the leading agentic coding platform is accelerating rapidly — early adoption positions WBD ahead of the curve.</td>
 </tr>
-<tr>
-<td width="80" align="center"><img src="logos/claude.png" alt="Claude" width="50"/><br/><sub><b>Claude Enterprise</b></sub></td>
-<td><b>Anthropic</b> · MCP: <b>Native</b><br/>Chat interface with MCP. Admin-managed integrations.</td>
-</tr>
 </table>
 
 ---
-
-### Agent Frameworks & Platforms (Backend / Automation)
-
-These power custom agents and automation that consume MCP servers programmatically — used by engineering teams building the autonomous review agent, chatbots, and agentic workflows.
-
-| Platform | Vendor | MCP Support | Use Case at WBD |
-|----------|--------|:-----------:|-----------------|
-| **Amazon Bedrock Agents** | AWS | **Approved + Supported** | Custom agents calling MCP tools via Lambda — IaC generation, autonomous review, chatbots |
-| **OpenAI Agents SDK** | OpenAI | Supported | If WBD uses OpenAI models, agents can consume same MCP servers |
-| **LangChain / LangGraph** | LangChain Inc. | Supported | Custom agent orchestration with MCP tool integration |
-| **Semantic Kernel** | Microsoft | Supported | .NET/Python AI framework. Could connect M365 Copilot to MCP via backend. |
-| **CrewAI** | CrewAI | Supported | Multi-agent framework with MCP tool calling |
-| **Claude Agent SDK** | Anthropic | Native | Build custom autonomous agents with full MCP access |
 
 ---
 
@@ -129,14 +112,6 @@ These power custom agents and automation that consume MCP servers programmatical
 
 ---
 
-## Who Benefits
-
-Every team that writes or reviews infrastructure, code, or configuration:
-
-Cloud Security, Vulnerability Management, IAM, Network Security, SecOps, Platform Engineering — etc.
-
----
-
 ## Deliverables
 
 | # | Deliverable | What It Is |
@@ -144,8 +119,7 @@ Cloud Security, Vulnerability Management, IAM, Network Security, SecOps, Platfor
 | 1 | **MCP Knowledge Platform** | Confluence baselines indexed and served as queryable MCP tools. Cloud Security as reference implementation. |
 | 2 | **MCP Baseline & Starter Kit** | Security standards for building MCP servers + reusable package any team can deploy for their own docs. |
 | 3 | **MCP Registry** | Central catalog of all MCP servers — what's available, who owns it, how to connect. |
-| 4 | **Self-Service MCP Manager** | Teams discover, enable, and maintain their skill sets without manual configuration. |
-| 5 | **Autonomous Architecture Review Agent** | Agent pre-screens Cloud Security Architecture Reviews using MCP knowledge. Reviewers verify, not investigate. |
+| 4 | **Autonomous Architecture Review Agent** | Agent pre-screens Cloud Security Architecture Reviews using MCP knowledge. Reviewers verify, not investigate. |
 
 ---
 
@@ -210,26 +184,31 @@ Each team points the scraper at their own Confluence spaces, defines their colle
 
 ---
 
-### Implementation for Approved Tools
+### Immediate Win — GitHub Copilot
 
 <table>
 <tr>
-<td width="80" align="center"><img src="logos/github-copilot.png" alt="GitHub CoPilot" width="60"/></td>
-<td><b>GitHub Copilot Enterprise</b><br/>Copilot's agent mode supports MCP servers. WBD admins can configure organization-level MCP server connections through GitHub's admin console, pushing baseline access to every Copilot user automatically. Engineers don't configure anything — they open Copilot, and corporate baselines are already available. When an engineer asks Copilot to generate Terraform, Copilot queries the MCP knowledge servers for applicable WBD baselines before generating code.</td>
-</tr>
-<tr>
-<td width="80" align="center"><img src="logos/cursor.png" alt="Cursor" width="60"/></td>
-<td><b>Cursor Business</b><br/>Cursor supports MCP servers natively in its settings. WBD can distribute a shared <code>.cursor/mcp.json</code> configuration via the organization's standard dotfiles or onboarding process. Once configured, every Cursor session has access to baseline search, compliance checks, and architecture standards. Engineers using Cursor for IaC, code review, or architecture work get WBD policy served inline — no extra steps.</td>
-</tr>
-<tr>
-<td width="80" align="center"><img src="logos/aws-bedrock.png" alt="AWS Bedrock" width="60"/></td>
-<td><b>AWS Bedrock</b><br/>Already approved at WBD. Bedrock agents call MCP-compatible tools via Lambda functions. This powers the backend for custom automation — IaC generation, consultation chatbots, autonomous review agents, and any future agentic workflows. Bedrock agents query the same MCP knowledge servers, retrieving WBD baselines before generating recommendations or code. All processing stays within WBD's AWS boundary.</td>
+<td width="80" align="center"><img src="logos/github-copilot.png" alt="GitHub Copilot" width="60"/></td>
+<td><b>GitHub Copilot Enterprise — Approved & Ready</b><br/>We already have Copilot. Copilot's agent mode supports MCP servers today. WBD admins configure org-level MCP connections through GitHub's admin console — every Copilot user gets baseline access automatically. Engineers don't configure anything. They open Copilot, ask it to generate Terraform, and Copilot pulls WBD baselines before writing code. This is the fastest path to value — no new tool, no procurement, just configuration.</td>
 </tr>
 </table>
 
-**For all three tools**, the experience is the same: the engineer or agent works as they normally do, and the AI retrieves corporate baselines behind the scenes. No workflow change. No new tool to learn. The knowledge just shows up.
+### Also Ready — Cursor & Bedrock
 
-Additional tools (Claude Code Enterprise, Windsurf, etc.) can be connected to the same MCP servers as they pass WBD's approval process. One infrastructure investment serves every current and future tool.
+<table>
+<tr>
+<td width="80" align="center"><img src="logos/cursor.png" alt="Cursor" width="60"/></td>
+<td><b>Cursor Business</b><br/>Native MCP support. Shared <code>.cursor/mcp.json</code> config pushable to all users via dotfiles or onboarding. Baselines show up inline.</td>
+</tr>
+<tr>
+<td width="80" align="center"><img src="logos/aws-bedrock.png" alt="AWS Bedrock" width="60"/></td>
+<td><b>AWS Bedrock</b><br/>Bedrock agents call MCP tools via Lambda. Powers custom automation — IaC generation, review agents, chatbots. All processing stays within WBD's AWS boundary.</td>
+</tr>
+</table>
+
+For all three tools, the engineer works as they normally do and the AI retrieves corporate baselines behind the scenes. No workflow change. No new tool to learn.
+
+Additional tools (Claude Code Enterprise, Windsurf, etc.) connect to the same MCP servers as they pass WBD's approval process.
 
 
 ---
