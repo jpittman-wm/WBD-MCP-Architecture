@@ -8,21 +8,22 @@
 
 ---
 
-## One-Liner
+## Executive Summary
 
 Serve Warner Bros. Discovery's security baselines, architecture standards, and compliance requirements as live, queryable services that any approved AI tool can consume — so engineering can easily adhere to corporate policy automatically.
 
 ---
 
-## The Problem
+## Challenge
 
-Engineers are expected to follow corporate security baselines. The baselines live across dozens of Confluence pages. Engineers don't always know what applies, where to find it, or which version is current. Result: non-compliance isn't malicious — it's friction.
+Engineers are expected to follow corporate security baselines. The baselines live across dozens of Confluence pages. Engineers don't always know what applies, where to find it, or which version is current. Resulting in non-compliance.
 
-Meanwhile, engineers are already using AI tools to write infrastructure code. Those tools don't know WBD policy. They generate output that looks right but may violate baselines in ways nobody catches until review, audit, or incident.
+Eengineers are already using AI tools to enhance code efforts. Those tools don't currently know WBD policy. They generate output that looks right but may violate baselines.  
+Probably cought by review but slowed down time to delivery.
 
 ---
 
-## The Solution
+## Proposed Solution
 
 <p align="center">
   <img src="logos/anthropic.png" alt="Anthropic" width="60"/>
@@ -50,11 +51,11 @@ Content auto-syncs from Confluence daily. When baselines update, every engineer'
 
 ## What Tools Can Use This
 
-MCP is an open standard adopted across the AI industry. WBD builds the MCP servers once — any approved tool connects. Not locked to one vendor.
+MCP is an open standard adopted across the AI industry. WBD builds the MCP servers — any approved tool connects. 
 
 ### WBD Approved AI Tools — MCP Compatibility
 
-These tools are **already approved at Warner Bros. Discovery**. The MCP column shows which ones can connect to MCP knowledge servers today.
+These tools are **already approved at Warner Bros. Discovery**. The MCP column shows which ones can connect to the proposed MCP knowledge servers today.
 
 ---
 
@@ -77,26 +78,24 @@ These tools are **already approved at Warner Bros. Discovery**. The MCP column s
 
 > **These three tools are approved and MCP-capable. The MCP knowledge infrastructure can be connected immediately — no new tool procurement required.**
 
+**Local device configuration:** MCP connections are defined in a simple JSON config file on the engineer's machine (e.g., `.cursor/mcp.json`, Copilot's org-level settings). The org can push these configs centrally — via GitHub admin console, managed dotfiles, or onboarding tooling — so engineers' tools point to WBD's MCP servers from day one. No manual setup, no tribal knowledge required.
+
 ---
 
 *Other approved WBD AI tools (Microsoft Copilot for Web, Office 365 CoPilot, Zoom AI, Miro, Adobe Firefly, Descript, Canva, Figma, AI Creative Studio, Trint) do not currently support MCP. Microsoft is expanding MCP support across its Copilot products — We will want to monitor for updates.*
 
 ---
 
-### Not Yet Approved — MCP-Native (Seeking Approval)
+### Not Yet Approved — MCP-Native (Seeking Approval) Powerfull - Need to fast-track
 
 <table>
 <tr>
 <td width="80" align="center"><img src="logos/claude.png" alt="Claude" width="50"/><br/><sub><b>Claude Code Enterprise</b></sub></td>
-<td><b>Anthropic</b> · MCP: <b>Native (first-class)</b><br/>Built by MCP creators. Deepest MCP integration. SSO, audit logging, data governance, custom system prompts, org-wide MCP configs.</td>
+<td><b>Anthropic</b> · MCP: <b>Native (first-class)</b><br/>Built by MCP creators. Deepest MCP integration. SSO, audit logging, data governance, custom system prompts, org-wide MCP configs. Anthropic's Claude models already power Amazon Bedrock — a platform WBD leverages heavily today. Claude Code Enterprise extends that existing investment from API to developer tooling. This tool's evolution as the leading agentic coding platform is accelerating rapidly — early adoption positions WBD ahead of the curve.</td>
 </tr>
 <tr>
 <td width="80" align="center"><img src="logos/claude.png" alt="Claude" width="50"/><br/><sub><b>Claude Enterprise</b></sub></td>
 <td><b>Anthropic</b> · MCP: <b>Native</b><br/>Chat interface with MCP. Admin-managed integrations.</td>
-</tr>
-<tr>
-<td width="80" align="center"><img src="logos/windsurf.png" alt="Windsurf" width="50"/><br/><sub><b>Windsurf Enterprise</b></sub></td>
-<td><b>Codeium (Windsurf)</b> · MCP: <b>Native</b><br/>AI IDE with org-level MCP management. Enterprise admin controls.</td>
 </tr>
 </table>
 
@@ -117,7 +116,7 @@ These power custom agents and automation that consume MCP servers programmatical
 
 ---
 
-## What Changes
+## Impact
 
 | Today | With MCP |
 |-------|----------|
